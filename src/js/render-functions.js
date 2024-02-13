@@ -3,6 +3,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { refs } from './refs';
+import { removeLoader } from './css-loader';
 export function getPixabayImages(inputValue) {
   const BASE_URL = 'https://pixabay.com/api/';
   const PIXABAY_KEY = '?key=42339224-5f1cb7b0c825234adabadbe9d';
@@ -37,14 +38,18 @@ export function getPixabayImages(inputValue) {
           </li>`;
           })
           .join('');
-        const modalOptions = {
-          captionsData: 'alt',
-          captionDelay: 250,
-        };
         refs.gallery.insertAdjacentHTML('afterbegin', markup);
         const gallery = new SimpleLightbox('.gallery a', modalOptions);
         gallery.refresh();
       }
     })
-    .catch(error => console.log('Error:', error));
+    .catch(error => console.log('Error:', error))
+    .finally(() => {
+      removeLoader();
+    });
 }
+
+const modalOptions = {
+  captionsData: 'alt',
+  captionDelay: 250,
+};
