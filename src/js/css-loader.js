@@ -1,14 +1,8 @@
 import { refs } from './refs';
 export function createLoader() {
-  const loader = document.createElement('span');
-  loader.classList.add('loader');
-  refs.container.append(loader);
+  refs.cssLoader.classList.add('loader');
 }
 
-// Function to hide the loader
 export function removeLoader() {
-  const loader = document.querySelector('.loader');
-  if (loader) {
-    loader.remove();
-  }
+  refs.cssLoader.classList.remove('loader');
 }
