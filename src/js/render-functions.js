@@ -5,6 +5,13 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import { refs } from './refs';
 import { removeLoader } from './css-loader';
 export function getPixabayImages(inputValue) {
+  if (inputValue === '') {
+    removeLoader();
+    return iziToast.error({
+      message: 'Form field must be filled in',
+      position: 'topRight',
+    });
+  }
   const BASE_URL = 'https://pixabay.com/api/';
   const PIXABAY_KEY = '?key=42339224-5f1cb7b0c825234adabadbe9d';
   const PARAMS = `&q=${inputValue}&image_type=photo&orientation=horizontal&safesearch=true`;

@@ -5,7 +5,7 @@ export function onFormSubmit(event) {
   event.preventDefault();
   createLoader();
   refs.gallery.innerHTML = '';
-  const userInputValue = refs.formInput.value;
+  const userInputValue = refs.formInput.value.trim();
   getPixabayImages(userInputValue);
   refs.form.reset();
 }
